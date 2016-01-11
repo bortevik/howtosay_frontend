@@ -1,11 +1,12 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var ENV = {
+  const ENV = {
     modulePrefix: 'howtosay',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
+    podModulePrefix: 'howtosay/pods',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -40,7 +41,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    // dev
   }
 
   return ENV;
