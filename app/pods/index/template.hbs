@@ -1,0 +1,5 @@
+{{#each questions as |question|}}
+  <p>
+    {{link-to question.text 'questions.show' question.id}}
+  </p>
+{{/each}}
