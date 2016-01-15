@@ -1,9 +1,49 @@
-<h2>{{question.text}}</h2>
+<div class="questions-show">
 
-{{#each answers as |answer|}}
-  <p>
-    {{answer.text}}
-  </p>
-{{/each}}
+  <div class="well question">
+    <h2>{{question.text}}</h2>
 
+    <div class="info row">
+      <div class="col-md-6 menu">
+        {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
+        <a href="#" {{action 'deleteQuestion'}}>{{t 'questions.show.question.delete-link'}}</a>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
 
+  <h4 class="answers-title">{{t 'questions.show.answers-title' count=filteredAnswers.length}}</h4>
+
+  <div class="answers">
+    {{#each filteredAnswers as |answer|}}
+      <div class="answer">
+        <div class="text">
+          {{answer.text}}
+        </div>
+        <div class="info row">
+          <div class="col-md-6 menu">
+            {{link-to (t 'questions.show.answer.edit-link') 'answers.edit' answer}}
+            <a href="#" {{action 'deleteAnswer' answer}}>{{t 'questions.show.answer.delete-link'}}</a>
+          </div>
+          <div class="col-md-6"></div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="new-question-form row">
+    <div class="col-md-9">
+      {{textarea
+        value=newAnswer.text
+        class="form-control"
+        placeholder=(t 'questions.show.new-answer-form.text-placeholder')
+        rows="3"}}
+    </div>
+    <div class="col-md-3">
+      <button class="btn btn-primary btn-lg" {{action 'createAnswer'}}>
+        {{t 'questions.show.new-answer-form.submit-button'}}
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,28 @@
+.questions-show {
+  .answers-title {
+    
+    border-bottom: 1px solid #eee;
+  }
+  .answers {
+    margin-bottom: 20px;
+
+    .answer {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+
+      .text {
+        font-size: 15px;
+      }
+
+      .info .menu a {
+        color: #999;
+        font-size: 13px;
+
+        &:hover {
+          color: #333;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}

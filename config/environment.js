@@ -22,7 +22,9 @@ module.exports = function(environment) {
 
     contentSecurityPolicy: {
       'connect-src': "'self' http://localhost:* "
-    }
+    },
+
+    i18n: { defaultLocale: 'en' }
   };
 
   if (environment === 'development') {

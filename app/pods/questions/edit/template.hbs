@@ -1,0 +1,18 @@
+<div class="questions-edit">
+  <h2 class="title">{{t 'questions.edit.title'}}</h2>
+
+  <div class="form">
+    <div class="form-group">
+      {{textarea
+        value=model.text
+        class="form-control"
+        placeholder=(t 'questions.edit.text-placeholder')
+        rows="3"
+      }}
+    </div>
+
+    <button class="btn btn-primary btn-lg" {{action 'editQuestion'}}>
+      {{t 'questions.edit.submit-button'}}
+    </button>
+  </div>
+</div>

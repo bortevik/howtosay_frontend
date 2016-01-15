@@ -1,5 +1,16 @@
-{{#each questions as |question|}}
-  <p>
-    {{link-to question.text 'questions.show' question.id}}
-  </p>
-{{/each}}
+<div class="new-question-form row">
+  <div class="col-md-9">
+    {{textarea value=newQuestion.text class="form-control" placeholder="Enter your question" rows="2"}}
+  </div>
+  <div class="col-md-3">
+    <button class="btn btn-primary btn-lg" {{action 'createQuestion'}}>Create question</button>
+  </div>
+</div>
+
+<div class="question-list">
+  {{#each filteredQuestions as |question|}}
+    <div class="question-item">
+      {{link-to question.text 'questions.show' question.id}}
+    </div>
+  {{/each}}
+</div>

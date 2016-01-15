@@ -11,6 +11,9 @@ export default Ember.Route.extend({
   },
 
   setupController(controller, model) {
+    const newAnswer = this.get('store').createRecord('answer', { question: model.question });
+
     controller.setProperties(model);
+    controller.set('newAnswer', newAnswer);
   }
 });

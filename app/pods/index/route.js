@@ -6,6 +6,9 @@ export default Ember.Route.extend({
   },
 
   setupController(controller, model) {
-    controller.set('questions', model);
+    controller.setProperties({
+      questions: model,
+      newQuestion: this.get('store').createRecord('question')
+    });
   }
 });
