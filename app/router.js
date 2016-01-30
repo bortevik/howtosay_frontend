@@ -14,6 +14,9 @@ Router.map(function() {
   this.route('answers', function() {
     this.route('edit', { path: '/:answer_id/edit' });
   });
+
+  this.route('signin');
+  this.route('singup');
 });
 
 export default Router;

@@ -9,6 +9,21 @@
       </button>
       {{link-to 'How to say' 'index' class="navbar-brand"}}
     </div>
+
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        {{#if session.isAuthenticated}}
+          <p class="navbar-text">
+            {{session.data.authenticated.data.attributes.name}}
+          </p>
+          <li>
+            <a href="#" {{action 'invalidateSession'}}>{{t 'header.signout-link'}}</a>
+          </li>
+        {{else}}
+          <li>{{link-to (t 'header.signin-link') 'signin'}}</li>
+        {{/if}}
+      </ul>
+    </div>
   </div>
 </div>
 

@@ -1,4 +1,8 @@
 export default {
+  header: {
+    'signin-link': 'Sign in',
+    'signout-link': 'Sign out'
+  },
   questions: {
     show: {
       question: {
@@ -29,6 +33,15 @@ export default {
       title: 'Edit Answer',
       'submit-button': 'Change Answer'
     }
+  },
+  signin: {
+    title: 'Sign in',
+    'error-message': 'Wrong email or password',
+    'email-label': 'Email',
+    'email-placeholder': 'Email',
+    'password-label': 'Password',
+    'password-placeholder': 'Password',
+    'submit-button': 'Sign in'
   }
 
   // "some.translation.key": "Text for some.translation.key",

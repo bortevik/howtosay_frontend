@@ -24,7 +24,11 @@ module.exports = function(environment) {
       'connect-src': "'self' http://localhost:* "
     },
 
-    i18n: { defaultLocale: 'en' }
+    i18n: { defaultLocale: 'en' },
+
+    'ember-simple-auth': {
+      authenticationRoute: 'signin'
+    }
   };
 
   if (environment === 'development') {
@@ -52,6 +56,14 @@ module.exports = function(environment) {
   if (environment === 'production') {
     // prod
   }
+
+  ENV['ember-simple-auth-token'] = {
+    serverTokenEndpoint: `${ENV.host}/${ENV.api}/signin/`,
+    identificationField: 'email',
+    serverTokenRefreshEndpoint: `${ENV.host}/${ENV.api}/token_refresh/`,
+    timeFactor: 1000,
+    refreshLeeway: 30000 // refresh token before 30 min to token expiration
+  };
 
   return ENV;
 };
