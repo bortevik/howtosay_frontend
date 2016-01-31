@@ -16,7 +16,7 @@ Router.map(function() {
   });
 
   this.route('signin');
-  this.route('singup');
+  this.route('signup');
 });
 
 export default Router;

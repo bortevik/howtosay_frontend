@@ -20,6 +20,8 @@
             <a href="#" {{action 'invalidateSession'}}>{{t 'header.signout-link'}}</a>
           </li>
         {{else}}
+          <li>{{link-to (t 'header.signup-link') 'signup'}}</li>
+          <p class="navbar-text">{{t 'header.or'}}</p>
           <li>{{link-to (t 'header.signin-link') 'signin'}}</li>
         {{/if}}
       </ul>

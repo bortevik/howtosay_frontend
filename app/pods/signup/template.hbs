@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <h2>{{t 'signup.title'}}</h2>
+    <hr/>
+
+    {{#if errorMessages}}
+      <ul class="alert alert-danger list-unstyled">
+        {{#each errorMessages as |error|}}
+          <li>{{error}}</li>
+        {{/each}}
+      </ul>
+    {{/if}}
+
+    <form {{action 'signup' on="submit"}}>
+      <div class="form-group">
+        {{input name="name" placeholder=(t 'signup.name-placeholder') value=model.name class="form-control"}}
+      </div>
+
+      <div class="form-group">
+        {{input name="email" placeholder=(t 'signup.email-placeholder') value=model.email class="form-control"}}
+      </div>
+
+      <div class="form-group">
+        {{input name="password" type="password" placeholder=(t 'signup.password-placeholder') value=model.password class="form-control"}}
+      </div>
+
+      <div class="form-group">
+        {{input name="password-confirmation"
+          type="password"
+          value=model.passwordConfirmation
+          placeholder=(t 'signup.password-confirmation-placeholder')
+          class="form-control"
+        }}
+      </div>
+
+      <button type="submit" class="btn btn-primary">{{t 'signup.submit-button'}}</button>
+    </form>
+
+  </div>
+</div>
