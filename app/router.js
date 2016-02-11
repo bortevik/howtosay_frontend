@@ -17,6 +17,8 @@ Router.map(function() {
 
   this.route('signin');
   this.route('signup');
+
+  this.route('email_confirmation', { path: '/email_confirmation/:token' });
 });
 
 export default Router;
