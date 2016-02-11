@@ -1,6 +1,5 @@
 export default {
   header: {
-    or: 'or',
     'signup-link': 'Sign up',
     'signin-link': 'Sign in',
     'signout-link': 'Sign out'
@@ -47,6 +46,7 @@ export default {
   },
   signup: {
     title: 'Sign up',
+    'success-message': 'Confirmation email was sent to {{email}}',
     'name-placeholder': 'Name',
     'email-placeholder': 'Email',
     'password-placeholder': 'Password',

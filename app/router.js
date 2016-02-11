@@ -1,8 +1,17 @@
 import Ember from 'ember';
 import config from './config/environment';
 
+const { service } = Ember.inject;
+
 const Router = Ember.Router.extend({
-  location: config.locationType
+  notificationService: service(),
+
+  location: config.locationType,
+
+  willTransition(...args) {
+    this.get('notificationService').clearAll();
+    this._super(...args);
+  }
 });
 
 Router.map(function() {

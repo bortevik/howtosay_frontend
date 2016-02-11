@@ -5,6 +5,7 @@ const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
   i18n: service(),
+  notificationService: service(),
 
   errorMessages: [],
 
@@ -28,6 +29,8 @@ export default Ember.Controller.extend({
   },
 
   _handleSuccessSave(user) {
+    const message = this.get('i18n').t('signup.success-message', { email: user.get('email') });
+
     user.setProperties({
       email: '',
       password: '',
@@ -35,6 +38,7 @@ export default Ember.Controller.extend({
     });
 
     this.transitionToRoute('index');
+    this.get('notificationService').success(message);
     return;
   },
 
