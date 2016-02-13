@@ -17,7 +17,7 @@ export default Ember.Route.extend({
     const message = this.get('i18n').t('email-confirmation.success-message');
 
     this.transitionTo('index');
-    this.get('notificationService').error(message);
+    this.get('notificationService').success(message);
   },
 
   _handleError() {

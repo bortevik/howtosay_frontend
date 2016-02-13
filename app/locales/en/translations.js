@@ -53,6 +53,10 @@ export default {
     'password-confirmation-placeholder': 'Password confirmation',
     'submit-button': 'Sign up'
   },
+  'email-confirmation': {
+    'success-message': 'Your email was successfully confirmed',
+    'error-message': 'Wrong confirmation token'
+  },
   errors: {
     attributes: {
       name: 'Name',
