@@ -46,6 +46,8 @@ export default Ember.Controller.extend({
     if (isEmpty(errors)) { return; }
 
     const serverErrors = errors.map(({ detail, source }) => {
+      if (!source) { return this.get('i18n').t('signup.some-thing-wrong'); }
+
       const attr = source.pointer.split('/').get('lastObject');
       const key = `server-errors.${attr} ${detail}`;
 

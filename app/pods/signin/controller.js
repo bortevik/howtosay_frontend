@@ -17,8 +17,8 @@ export default Ember.Controller.extend({
         .then(() => {
           this.set('errorMessage', '');
         })
-        .catch(() => {
-          this.set('errorMessage', this.get('i18n').t('signin.error-message'));
+        .catch(({ error }) => {
+          this.set('errorMessage', this.get('i18n').t(`signin.${error}`));
         });
     }
   }

@@ -37,7 +37,8 @@ export default {
   },
   signin: {
     title: 'Sign in',
-    'error-message': 'Wrong email or password',
+    'Wrong email or password': 'Wrong email or password',
+    'Email is not confirmed': 'Email is not confirmed. Check your email box or resend confirmation link.',
     'email-label': 'Email',
     'email-placeholder': 'Email',
     'password-label': 'Password',
@@ -51,7 +52,8 @@ export default {
     'email-placeholder': 'Email',
     'password-placeholder': 'Password',
     'password-confirmation-placeholder': 'Password confirmation',
-    'submit-button': 'Sign up'
+    'submit-button': 'Sign up',
+    'some-this-wrong': 'Something went wrong'
   },
   'email-confirmation': {
     'success-message': 'Your email was successfully confirmed',
