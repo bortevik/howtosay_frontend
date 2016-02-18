@@ -38,10 +38,8 @@ export default {
   signin: {
     title: 'Sign in',
     'Wrong email or password': 'Wrong email or password',
-    'Email is not confirmed': 'Email is not confirmed. Check your email box or resend confirmation link.',
-    'email-label': 'Email',
+    'Email is not confirmed': 'Email is not confirmed. Check your email box or <a href="/resend_confirmation_email/">resend confirmation email.</a>',
     'email-placeholder': 'Email',
-    'password-label': 'Password',
     'password-placeholder': 'Password',
     'submit-button': 'Sign in'
   },
@@ -53,11 +51,18 @@ export default {
     'password-placeholder': 'Password',
     'password-confirmation-placeholder': 'Password confirmation',
     'submit-button': 'Sign up',
-    'some-this-wrong': 'Something went wrong'
+    'something-wrong': 'Something went wrong'
   },
   'email-confirmation': {
     'success-message': 'Your email was successfully confirmed',
     'error-message': 'Wrong confirmation token'
+  },
+  'resend-confirmation-email': {
+    'title': 'Resend confirmation email',
+    'email-placeholder': 'Email',
+    'submit-button': 'Sign in',
+    'success-message': 'Confirmation email was sent to {{email}}',
+    'something-wrong': 'Something went wrong'
   },
   errors: {
     attributes: {
