@@ -38,7 +38,7 @@ export default {
   signin: {
     title: 'Sign in',
     'Wrong email or password': 'Wrong email or password',
-    'Email is not confirmed': 'Email is not confirmed. Check your email box or <a href="/resend_confirmation_email/">resend confirmation email.</a>',
+    'Email is not confirmed': 'Email is not confirmed. Check your email box or <a href="/resend-confirmation-email/">resend confirmation email.</a>',
     'email-placeholder': 'Email',
     'password-placeholder': 'Password',
     'submit-button': 'Sign in'

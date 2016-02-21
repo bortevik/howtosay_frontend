@@ -15,11 +15,10 @@ export default Controller.extend({
     resendEmail() {
       const email = this.get('email');
       const options = {
-        method: 'POST',
-        data: { email }
+        data: JSON.stringify({ email })
       };
 
-      this.get('ajax').request('/users/resend_confirmation_email', options) .then(() => {
+      this.get('ajax').post('/users/resend_confirmation_email', options) .then(() => {
         const message = this.get('i18n').t('resend-confirmation-email.success-message', { email });
 
         this.transitionToRoute('index');
