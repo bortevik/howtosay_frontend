@@ -9,7 +9,7 @@ export default Ember.Controller.extend({
   errorMessage: '',
 
   actions: {
-    authenticate: function() {
+    authenticate() {
       const credentials = this.getProperties('identification', 'password');
       const authenticator = 'authenticator:jwt';
 

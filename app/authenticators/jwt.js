@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default JwtAuthenticator.extend({
   makeRequest(url, data, headers) {
     return Ember.$.ajax({
-      url: url,
+      url,
       method: 'POST',
       data: JSON.stringify(data),
       dataType: 'json',
@@ -22,7 +22,7 @@ export default JwtAuthenticator.extend({
     });
   },
 
-  refreshAccessToken(token, headers={}) {
+  refreshAccessToken(token, headers = {}) {
     Ember.merge(headers, { Authorization: `Bearer ${token}` });
     return this._super(token, headers);
   }

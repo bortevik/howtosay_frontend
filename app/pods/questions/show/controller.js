@@ -13,7 +13,7 @@ export default Ember.Controller.extend({
     createAnswer() {
       this.get('newAnswer').save().then(answer => {
         const question = this.get('question');
-        const newAnswer = this.get('store').createRecord('answer', { question: question });
+        const newAnswer = this.get('store').createRecord('answer', { question });
 
         this.get('answers').pushObject(answer._internalModel);
         this.set('newAnswer', newAnswer);

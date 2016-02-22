@@ -1,0 +1,8 @@
+{
+  "preset": "ember-suave",
+  "requireBlocksOnNewline": false,
+  "requireParenthesesAroundArrowParam": false,
+  "requireCommentsToIncludeAccess": false,
+  "disallowConstOutsideModuleScope": false
+}
+

@@ -33,28 +33,28 @@ export default Ember.Service.extend({
   // Helper methods for each type of notification
   danger(message, options) {
     this.addNotification(Ember.merge({
-      message: message,
+      message,
       type: 'danger'
     }, options));
   },
 
   success(message, options) {
     this.addNotification(Ember.merge({
-      message: message,
+      message,
       type: 'success'
     }, options));
   },
 
   info(message, options) {
     this.addNotification(Ember.merge({
-      message: message,
+      message,
       type: 'info'
     }, options));
   },
 
   warning(message, options) {
     this.addNotification(Ember.merge({
-      message: message,
+      message,
       type: 'warning'
     }, options));
   },

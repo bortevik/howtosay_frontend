@@ -1,3 +1,4 @@
+/* jscs: disable requireCamelCaseOrUpperCaseIdentifiers */
 import Ember from 'ember';
 
 export default Ember.Route.extend({
@@ -6,7 +7,7 @@ export default Ember.Route.extend({
 
     return Ember.RSVP.hash({
       question: store.findRecord('question', question_id),
-      answers: store.query('answer', { question_id: question_id })
+      answers: store.query('answer', { question_id })
     });
   },
 
