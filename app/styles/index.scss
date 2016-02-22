@@ -1,19 +1,30 @@
 .new-question-form {
   textarea {
-    resize: none;
     margin-bottom: 10px;
+    resize: none;
   }
 
   .btn {
-    width: 100%
+    width: 100%;
+  }
+}
+
+.prompt {
+  .text {
+    color: $gray;
+    font-size: 20px;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 
 .question-list {
   .question-item {
+    border-bottom: 1px solid $light-grey;
     font-size: 16px;
-    padding: 25px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #eee;
+    padding: 25px;
   }
 }

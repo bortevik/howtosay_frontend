@@ -1,4 +1,7 @@
 export default {
+  index: {
+    prompt: 'Sign up to create your first question.'
+  },
   header: {
     'signup-link': 'Sign up',
     'signin-link': 'Sign in',
