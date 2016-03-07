@@ -1,17 +1,23 @@
+$index-question-item-tag-background-color: #e1ecf4;
+$index-question-item-tag-color: #39739d;
+
 .index-question-item {
   border-bottom: 1px solid $light-grey;
   font-size: 16px;
-  padding: 15px;
+  padding: 12px 0 10px;
 
   .question-body {
-    margin-bottom: 10px;
+    margin-bottom: .35em;
   }
 
   .info-block {
     .tag {
-      background-color: $light-grey;
-      color: $grey;
-      padding: 2px 7px;
+      background-color: $index-question-item-tag-background-color;
+      color: $index-question-item-tag-color;
+      display: inline-block;
+      font-size: 12px;
+      margin: 2px;
+      padding: .3em .5em;
     }
   }
 }
