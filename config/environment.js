@@ -2,8 +2,8 @@
 
 module.exports = function(environment) {
   const ENV = {
+    environment,
     modulePrefix: 'howtosay',
-    environment: environment,
     baseURL: '/',
     locationType: 'auto',
     podModulePrefix: 'howtosay/pods',
@@ -21,6 +21,7 @@ module.exports = function(environment) {
     },
 
     contentSecurityPolicy: {
+      'style-src': "'self' 'unsafe-inline'",
       'connect-src': "'self' http://localhost:* "
     },
 

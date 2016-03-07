@@ -1,0 +1,18 @@
+.index-question-item {
+  border-bottom: 1px solid $light-grey;
+  font-size: 16px;
+  padding: 15px;
+
+  .question-body {
+    margin-bottom: 10px;
+  }
+
+  .info-block {
+    .tag {
+      background-color: $light-grey;
+      color: $grey;
+      padding: 2px 7px;
+    }
+  }
+}
+

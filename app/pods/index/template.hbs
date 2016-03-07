@@ -20,8 +20,7 @@
 
 <div class="question-list">
   {{#each filteredQuestions as |question|}}
-    <div class="question-item">
-      {{link-to question.text 'questions.show' question.id}}
-    </div>
+    {{index/question-item question=question}}
   {{/each}}
 </div>
+

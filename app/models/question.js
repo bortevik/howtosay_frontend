@@ -1,9 +1,12 @@
 import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
-import { hasMany } from 'ember-data/relationships';
+import { hasMany, belongsTo } from 'ember-data/relationships';
 
 export default Model.extend({
   text: attr('string'),
 
-  answer: hasMany()
+  answer: hasMany(),
+  languageFrom: belongsTo('language'),
+  languageTo: belongsTo('language')
 });
+
