@@ -11,7 +11,7 @@ export function initialize() {
         const className = componentName
           .replace('howtosay@component:', '')
           .replace(':', '')
-          .replace('/', '-');
+          .replace(/\//g, '-');
 
         this.get('classNames').push(className);
       }

@@ -1,0 +1,14 @@
+<h2 class="body">{{question.text}}</h2>
+
+<div class="info-block">
+  <span class="tag">{{question.languageFrom.code}} - {{question.languageTo.code}}</span>
+</div>
+
+<div class="info row">
+  <div class="col-md-6 menu">
+    {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
+    <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
+  </div>
+
+  <div class="col-md-6"></div>
+</div>

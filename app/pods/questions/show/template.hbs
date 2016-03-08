@@ -1,16 +1,6 @@
 <div class="questions-show">
 
-  <div class="well question">
-    <h2>{{question.text}}</h2>
-
-    <div class="info row">
-      <div class="col-md-6 menu">
-        {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
-        <a href="#" {{action 'deleteQuestion'}}>{{t 'questions.show.question.delete-link'}}</a>
-      </div>
-      <div class="col-md-6"></div>
-    </div>
-  </div>
+  {{questions/show/question-block question=question deleteQuestion=(action 'deleteQuestion')}}
 
   <h4 class="answers-title">{{t 'questions.show.answers-title' count=filteredAnswers.length}}</h4>
 

@@ -28,6 +28,7 @@ export default Ember.Controller.extend({
       this.get('question').destroyRecord().then(() => {
         this.transitionToRoute('index');
       });
+      return false;
     }
   }
 });

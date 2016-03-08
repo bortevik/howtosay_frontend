@@ -1,0 +1,20 @@
+$question-show-question-block-tag-background-color: #e1ecf4;
+$question-show-question-block-tag-color: #39739d;
+$question-show-question-block-border-color: #c9dcec;
+
+.questions-show-question-block {
+  .info-block {
+    margin-bottom: .35em;
+
+    .tag {
+      background-color: $question-show-question-block-tag-background-color;
+      border: 1px solid $question-show-question-block-border-color;
+      color: $question-show-question-block-tag-color;
+      display: inline-block;
+      font-size: 12px;
+      margin: 2px;
+      padding: .3em .5em;
+    }
+  }
+}
+
