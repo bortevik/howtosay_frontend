@@ -109,6 +109,11 @@ export default {
   },
   'server-errors': {
     'email has already been taken': 'This email has already been taken'
+  },
+  locales: {
+    en: 'English',
+    ru: 'Russian',
+    ar: 'Arabic'
   }
 
   // "some.translation.key": "Text for some.translation.key",

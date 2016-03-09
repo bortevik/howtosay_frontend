@@ -1,0 +1,8 @@
+scss_files: 'app/styles/**/*.scss'
+
+exclude: ['bower_components/**', 'node_modules/**']
+
+linters:
+  NestingDepth:
+    enabled: false
+

@@ -1,0 +1,24 @@
+.locale-select {
+  .locale-select-dropdown {
+    background-color: $white;
+    border: 1px solid $grey;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    max-height: 500px;
+    padding: 0;
+    position: absolute;
+    top: 10px;
+
+    .item {
+      list-style: none;
+      margin: 2px 0;
+      padding: 3px 15px;
+
+      &:hover {
+        background-color: $light-grey;
+      }
+    }
+  }
+}
+

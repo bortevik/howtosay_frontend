@@ -1,0 +1,10 @@
+<a href="#" onclick={{action 'toggleSelect'}} class="dropdown-toggle">{{selectedLocale}} <span class="caret"></span></a>
+
+{{#if showSelect}}
+  <ul class="locale-select-dropdown">
+    {{#each languages as |language|}}
+      <li class="item" onclick={{perform selectLocale language}}>{{language.localizedName}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
