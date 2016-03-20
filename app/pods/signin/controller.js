@@ -15,11 +15,18 @@ export default Ember.Controller.extend({
 
       this.get('session').authenticate(authenticator, credentials)
         .then(() => {
+          this._setLocale();
           this.set('errorMessage', '');
         })
         .catch(({ error }) => {
           this.set('errorMessage', this.get('i18n').t(`signin.${error}`));
         });
     }
+  },
+
+  _setLocale() {
+    const locale = this.get('session.currentUser.language.code');
+
+    this.set('i18n.locale', locale);
   }
 });

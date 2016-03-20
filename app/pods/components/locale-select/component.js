@@ -7,6 +7,7 @@ const { service } = Ember.inject;
 export default Ember.Component.extend({
   i18n: service(),
   store: service(),
+  session: service(),
 
   tagName: 'li',
   classNames: 'dropdown',
@@ -22,17 +23,34 @@ export default Ember.Component.extend({
     return this.get('i18n').t(translationKey);
   }),
 
-  // Tasks
-  selectLocale: task(function *(language) {
-    this.set('i18n.locale', language.get('code'));
-  }),
-
-  // Actions
   actions: {
     toggleSelect() {
       this.toggleProperty('showSelect');
       return false;
+    },
+
+    selectLocale(language) {
+      this.set('i18n.locale', language.get('code'));
+      this.set('showSelect', false);
+
+      if (this.get('session.isAuthenticated')) {
+        this.get('_updateUser').perform(language);
+      }
+      return false;
     }
-  }
+  },
+
+  _updateUser: task(function *(language) {
+    const session = this.get('session');
+    const user = session.get('currentUser');
+    const data = yield session.get('store').restore();
+
+    if (user.get('language.id') === language.get('id')) { return; }
+
+    user.set('language', language);
+    yield user.save();
+    data.authenticated.data.relationships.language.data.id = language.get('id');
+    session.get('store').persist(data);
+  })
 });
 

@@ -3,7 +3,7 @@
 {{#if showSelect}}
   <ul class="locale-select-dropdown">
     {{#each languages as |language|}}
-      <li class="item" onclick={{perform selectLocale language}}>{{language.localizedName}}</li>
+      <li class="item" onclick={{action 'selectLocale' language}}>{{language.localizedName}}</li>
     {{/each}}
   </ul>
 {{/if}}
