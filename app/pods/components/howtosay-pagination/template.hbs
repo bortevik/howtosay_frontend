@@ -1,0 +1,28 @@
+<ul class="pagination pagination-sm">
+  {{#if pagination.prev.page}}
+    <li><a href="#" onclick={{action 'setPage' pagination.prev.page}}>&laquo;</a></li>
+  {{/if}}
+
+  {{#each pager as |page|}}
+    {{#if (eq page 'dots')}}
+      <li class="dots"><a>...</a></li>
+    {{else}}
+      <li class={{if (eq page pagination.self.page) 'active'}}>
+        <a href="#" onclick={{action 'setPage' page}}>{{page}}</a>
+      </li>
+    {{/if}}
+  {{/each}}
+
+  {{#if pagination.next.page}}
+    <li><a href="#" onclick={{action 'setPage' pagination.next.page}}>&raquo;</a></li>
+  {{/if}}
+</ul>
+
+<ul class="pagination pagination-sm pull-right">
+  {{#each perPageSizes as |size|}}
+    <li class={{if (eq size pagination.self.perPage) 'active'}}>
+      <a href="#" onclick={{action 'setPerPage' size}}>{{size}}</a>
+    </li>
+  {{/each}}
+</ul>
+

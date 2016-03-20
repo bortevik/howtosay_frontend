@@ -1,0 +1,18 @@
+.howtosay-pagination .pagination {
+  a {
+    margin-right: 3px;
+  }
+
+  .dots {
+    a {
+      border: 0;
+      color: $grey;
+      cursor: default;
+
+      &:hover {
+        background-color: $white;
+      }
+    }
+  }
+}
+

@@ -6,6 +6,10 @@ const { service } = Ember.inject;
 export default Ember.Controller.extend({
   session: service(),
 
+  queryParams: ['page', 'perPage'],
+  page: 1,
+  perPage: 5,
+
   filteredQuestions: computed('questions.[]', function() {
     return this.get('questions')
       .filter(question => !question.get('isNew'))
@@ -20,6 +24,10 @@ export default Ember.Controller.extend({
 
         this.set('newQuestion', newQuestion);
       });
+    },
+
+    paginate(options) {
+      this.setProperties(options);
     }
   }
 });
