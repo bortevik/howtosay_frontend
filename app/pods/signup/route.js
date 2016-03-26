@@ -13,7 +13,7 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
   deactivate() {
     this.get('controller').setProperties({
       model: null,
-      errorMessages: []
+      showErrors: false
     });
   },
 

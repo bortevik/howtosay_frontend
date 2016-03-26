@@ -5,10 +5,13 @@ import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
   name: validator('presence', true),
-  email: validator('format', {
-    type: 'email',
-    regex: /@/
-  }),
+  email: [
+    validator('format', {
+      type: 'email',
+      regex: /@/
+    }),
+    validator('ds-error')
+  ],
   password: validator('length', {
     min: 6,
     max: 100

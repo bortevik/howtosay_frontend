@@ -1,15 +1,8 @@
 import ValidatorsMessages from 'ember-cp-validations/validators/messages';
 import Ember from 'ember';
+import unwrap from 'howtosay/utils/unwrap-html-safe';
 
 const { Logger } = Ember;
-
-function unwrap(input) {
-  if (input instanceof Ember.Handlebars.SafeString) {
-    return input.toString();
-  }
-
-  return input;
-}
 
 export default ValidatorsMessages.extend({
   i18n: Ember.inject.service(),

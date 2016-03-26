@@ -3,28 +3,28 @@
     <h2>{{t 'signup.title'}}</h2>
     <hr/>
 
-    {{#if errorMessages}}
+    {{#if (and showErrors (not model.validations.isValid))}}
       <ul class="alert alert-danger list-unstyled">
-        {{#each errorMessages as |error|}}
-          <li>{{error}}</li>
+        {{#each model.validations.errors as |error|}}
+          <li>{{error.message}}</li>
         {{/each}}
       </ul>
     {{/if}}
 
-    <form {{action 'signup' on="submit"}}>
-      <div class="form-group">
+    <form onsubmit={{action 'signup'}}>
+      <div class="form-group {{if (and showErrors (not model.validations.attrs.name.isValid)) 'has-error'}}">
         {{input name="name" placeholder=(t 'signup.name-placeholder') value=model.name class="form-control"}}
       </div>
 
-      <div class="form-group">
+      <div class="form-group {{if (and showErrors (not model.validations.attrs.email.isValid)) 'has-error'}}">
         {{input name="email" placeholder=(t 'signup.email-placeholder') value=model.email class="form-control"}}
       </div>
 
-      <div class="form-group">
+      <div class="form-group {{if (and showErrors (not model.validations.attrs.password.isValid)) 'has-error'}}">
         {{input name="password" type="password" placeholder=(t 'signup.password-placeholder') value=model.password class="form-control"}}
       </div>
 
-      <div class="form-group">
+      <div class="form-group {{if (and showErrors (not model.validations.attrs.passwordConfirmation.isValid)) 'has-error'}}">
         {{input name="password-confirmation"
           type="password"
           value=model.passwordConfirmation

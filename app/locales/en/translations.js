@@ -116,7 +116,7 @@ export default {
     url: '{{description}} must be a valid url'
   },
   'server-errors': {
-    'email has already been taken': 'This email has already been taken'
+    'Email has already been taken': 'This email has already been taken'
   },
   locales: {
     en: 'English',

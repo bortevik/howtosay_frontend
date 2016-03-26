@@ -1,30 +1,28 @@
 import Ember from 'ember';
+import DS from 'ember-data';
 
-const { isEmpty } = Ember;
 const { service } = Ember.inject;
 
 export default Ember.Controller.extend({
   i18n: service(),
   notificationService: service(),
 
-  errorMessages: [],
+  showErrors: false,
 
   actions: {
     signup() {
       const user = this.get('model');
 
       user.validateSync();
+      this.set('showErrors', true);
 
-      if (!user.get('validations.isValid')) {
-        const errorMessages = user.get('validations.errors').mapBy('message');
-
-        this.set('errorMessages', errorMessages);
-        return;
-      }
+      if (!user.get('validations.isValid')) { return false; }
 
       user.save()
         .then(() =>  this._handleSuccessSave(user))
-        .catch(({ errors }) => this._handleErrorSave(errors));
+        .catch(response => this._handleErrorSave(response));
+
+      return false;
     }
   },
 
@@ -42,19 +40,10 @@ export default Ember.Controller.extend({
     return;
   },
 
-  _handleErrorSave(errors) {
-    if (isEmpty(errors)) { return; }
+  _handleErrorSave(response) {
+    if (response instanceof DS.InvalidError) { return; }
 
-    const serverErrors = errors.map(({ detail, source }) => {
-      if (!source) { return this.get('i18n').t('signup.something-wrong'); }
-
-      const attr = source.pointer.split('/').get('lastObject');
-      const key = `server-errors.${attr} ${detail}`;
-
-      return this.get('i18n').t(key);
-    });
-
-    this.set('errorMessages', serverErrors);
-    return;
+    const message = this.get('i18n').t('signup.something-wrong');
+    this.get('notificationService').danger(message);
   }
 });
