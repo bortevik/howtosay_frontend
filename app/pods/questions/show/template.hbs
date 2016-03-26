@@ -21,19 +21,20 @@
     {{/each}}
   </div>
 
-  <div class="new-question-form row">
-    <div class="col-md-9">
+  <form class="new-question-form" onsubmit={{action 'createAnswer'}}>
+    <div class="form-group">
       {{textarea
         value=newAnswer.text
         class="form-control"
         placeholder=(t 'questions.show.new-answer-form.text-placeholder')
         rows="3"}}
     </div>
-    <div class="col-md-3">
-      <button class="btn btn-primary btn-lg" {{action 'createAnswer'}}>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">
         {{t 'questions.show.new-answer-form.submit-button'}}
       </button>
     </div>
-  </div>
+  </form>
 
 </div>

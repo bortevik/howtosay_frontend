@@ -11,13 +11,19 @@ export default Ember.Controller.extend({
 
   actions: {
     createAnswer() {
-      this.get('newAnswer').save().then(answer => {
+      const answer = this.get('newAnswer');
+
+      if (!answer.get('text')) { return false; }
+
+      answer.save().then(() => {
         const question = this.get('question');
         const newAnswer = this.get('store').createRecord('answer', { question });
 
         this.get('answers').pushObject(answer._internalModel);
         this.set('newAnswer', newAnswer);
       });
+
+      return false;
     },
 
     deleteAnswer(answer) {
