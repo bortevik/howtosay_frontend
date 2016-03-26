@@ -1,6 +1,7 @@
 export default {
   index: {
-    prompt: 'Sign up to create your first question.'
+    prompt: 'Sign up to create your first question.',
+    'new-question-button': 'Ask new question'
   },
   header: {
     'signup-link': 'Sign up',
@@ -8,6 +9,11 @@ export default {
     'signout-link': 'Sign out'
   },
   questions: {
+    new: {
+      title: 'Create new question',
+      'submit-button': 'Create question',
+      'language-to-select-prompt': 'Select language'
+    },
     show: {
       question: {
         'edit-link': 'edit',
@@ -69,6 +75,8 @@ export default {
   },
   errors: {
     attributes: {
+      text: 'Body',
+      languageTo: 'Destination language',
       name: 'Name',
       email: 'Email',
       password: 'Password',

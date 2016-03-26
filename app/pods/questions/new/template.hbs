@@ -1,0 +1,23 @@
+<div class="questions-new">
+  <h2 class="title">{{t 'questions.new.title'}}</h2>
+
+  <form class="new-question-form" onsubmit={{action 'createQuestion'}}>
+    <div class="form-group col-sm-3 language-to {{if (and showErrors (not newQuestion.validations.attrs.languageTo.isValid)) 'has-error'}}">
+      <select class="form-control input-sm" onchange={{action 'selectLanguageTo' value="target.value"}}>
+        <option>{{t 'questions.new.language-to-select-prompt'}}</option>
+        {{#each languages as |language|}}
+          <option value={{language.id}} selected={{eq newQuestion.languageTo.id language.id}}>{{language.localizedName}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-group {{if (and showErrors (not newQuestion.validations.attrs.text.isValid)) 'has-error'}}">
+      {{textarea value=newQuestion.text class="form-control" placeholder="Enter your question" rows="2"}}
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary">{{t 'questions.new.submit-button'}}</button>
+    </div>
+  </form>
+</div>
+

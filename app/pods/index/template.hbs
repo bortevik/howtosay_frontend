@@ -1,12 +1,6 @@
 {{#if session.isAuthenticated}}
-  <div class="new-question-form row">
-    <div class="col-md-9">
-      {{textarea value=newQuestion.text class="form-control" placeholder="Enter your question" rows="2"}}
-    </div>
-    <div class="col-md-3">
-      <button class="btn btn-primary btn-lg" {{action 'createQuestion'}}>Create question</button>
-    </div>
-  </div>
+  {{link-to (t 'index.new-question-button') 'questions.new' class="btn btn-success"}}
+  <hr>
 {{else}}
   <div class="well row prompt">
     <div class="col-md-9 text">
@@ -19,7 +13,7 @@
 {{/if}}
 
 <div class="question-list">
-  {{#each filteredQuestions as |question|}}
+  {{#each questions as |question|}}
     {{index/question-item question=question}}
   {{/each}}
 </div>

@@ -22,9 +22,6 @@ export default Ember.Route.extend({
   setupController(controller, model) {
     Ember.$(window).scrollTop(0);
 
-    controller.setProperties({
-      questions: model,
-      newQuestion: this.get('store').createRecord('question')
-    });
+    controller.set('questions', model);
   }
 });

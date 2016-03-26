@@ -18,6 +18,7 @@ Router.map(function() {
   this.route('questions', function() {
     this.route('show', { path: '/:question_id' });
     this.route('edit', { path: '/:question_id/edit' });
+    this.route('new');
   });
 
   this.route('answers', function() {
