@@ -12,7 +12,7 @@ export default Ember.Route.extend({
     perPage: {
       refreshModel: true
     },
-    langauges: {
+    languages: {
       refreshModel: true
     }
   },
