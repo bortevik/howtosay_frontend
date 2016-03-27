@@ -28,7 +28,7 @@ export default Ember.Route.extend({
         'page-size': perPage
       },
       'language-from-id': languageFrom.get('id'),
-      'langauge-to-ids': languages
+      'language-to-ids': languages
     });
   },
 
