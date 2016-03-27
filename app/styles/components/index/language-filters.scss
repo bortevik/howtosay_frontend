@@ -1,0 +1,10 @@
+$index-language-filters-badge-color: #ccc;
+
+.index-language-filters {
+  .ember-power-select-multiple-option {
+    background-color: $light-grey;
+    border-color: $index-language-filters-badge-color;
+    border-radius: 0;
+  }
+}
+

@@ -1,0 +1,10 @@
+{{#power-select-multiple
+   options=languagesForSelect
+   selected=filteredLanguages
+   placeholder=(t 'questions.new.language-to-select-prompt')
+   onchange=(action attrs.addLanguageFilter)
+   as |language|
+}}
+  {{language.localizedName}}
+{{/power-select-multiple}}
+
