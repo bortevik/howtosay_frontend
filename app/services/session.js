@@ -11,10 +11,9 @@ export default SessionService.extend({
     if (!this.get('isAuthenticated')) { return null; }
 
     const store = this.get('dataStore');
-    const { data } = this.get('data.authenticated');
-    const { id } = data;
+    const id = this.get('data.authenticated.data.id');
 
-    return store.peekRecord('user', id) || store.push({ data });
+    return store.peekRecord('user', id);
   })
 });
 

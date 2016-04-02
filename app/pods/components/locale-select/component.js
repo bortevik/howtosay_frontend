@@ -41,16 +41,12 @@ export default Ember.Component.extend({
   },
 
   _updateUser: task(function *(language) {
-    const session = this.get('session');
-    const user = session.get('currentUser');
-    const data = yield session.get('store').restore();
+    const user = this.get('session.currentUser');
 
     if (user.get('language.id') === language.get('id')) { return; }
 
     user.set('language', language);
     yield user.save();
-    data.authenticated.data.relationships.language.data.id = language.get('id');
-    session.get('store').persist(data);
   })
 });
 

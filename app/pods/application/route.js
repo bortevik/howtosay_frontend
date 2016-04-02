@@ -11,12 +11,22 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   beforeModel(...args) {
     return RSVP.Promise.all([
       this._super(...args),
-      this.store.findAll('language')
+      this.store.findAll('language'),
+      this._loadCurrentUser()
     ]);
   },
 
   afterModel() {
     this._setLocale();
+  },
+
+  _loadCurrentUser() {
+    const session = this.get('session');
+    if (!session.get('isAuthenticated')) { return null; }
+
+    const userId = session.get('data.authenticated.data.id');
+
+    return this.get('store').findRecord('user', userId);
   },
 
   _setLocale() {

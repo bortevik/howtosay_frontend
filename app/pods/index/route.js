@@ -4,6 +4,7 @@ const { service } = Ember.inject;
 
 export default Ember.Route.extend({
   i18n: service(),
+  session: service(),
 
   queryParams: {
     page: {
@@ -36,5 +37,12 @@ export default Ember.Route.extend({
     Ember.$(window).scrollTop(0);
 
     controller.set('questions', model);
+
+    if (this.get('session.isAuthenticated')) {
+      const languageIds = this.get('session.currentUser.languageToIds') || [];
+
+      controller.set('languages', languageIds.map(id => id.toString()));
+    }
   }
 });
+

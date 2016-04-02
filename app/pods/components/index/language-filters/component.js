@@ -22,5 +22,15 @@ export default Ember.Component.extend({
     return this.get('languages').reject(language => {
       return languageIds.contains(language.get('id'));
     });
-  })
+  }),
+
+  actions: {
+    addLanguageFilter(filteredLanguages) {
+      if (filteredLanguages.length === this.get('languages.length')) {
+        this.attrs.addLanguageFilter([]);
+      } else {
+        this.attrs.addLanguageFilter(filteredLanguages);
+      }
+    }
+  }
 });
