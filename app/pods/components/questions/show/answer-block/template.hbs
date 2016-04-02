@@ -1,0 +1,14 @@
+<div class="text">
+  {{answer.text}}
+</div>
+
+{{#if (eq session.currentUser.id answer.user.id)}}
+  <div class="info row">
+    <div class="col-md-6 menu">
+      {{link-to (t 'questions.show.answer.edit-link') 'answers.edit' answer}}
+      <a href="#" {{action attrs.deleteAnswer answer}}>{{t 'questions.show.answer.delete-link'}}</a>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+{{/if}}
+

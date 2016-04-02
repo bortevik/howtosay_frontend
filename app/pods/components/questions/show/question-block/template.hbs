@@ -7,10 +7,12 @@
 </div>
 
 <div class="info row">
-  <div class="col-md-6 menu">
-    {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
-    <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
-  </div>
+  {{#if (eq session.currentUser.id question.user.id)}}
+    <div class="col-md-6 menu">
+      {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
+      <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
+    </div>
+  {{/if}}
 
   <div class="col-md-6"></div>
 </div>

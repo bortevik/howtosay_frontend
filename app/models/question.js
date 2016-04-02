@@ -13,6 +13,7 @@ export default Model.extend(Validations, {
 
   answer: hasMany(),
   languageFrom: belongsTo('language'),
-  languageTo: belongsTo('language')
+  languageTo: belongsTo('language'),
+  user: belongsTo()
 });
 

@@ -1,0 +1,22 @@
+$questions-show-answer-block-menu-link-color: #999;
+$questions-show-answer-block-menu-link-hover-color: #333;
+
+.questions-show-answer-block {
+  border-bottom: 1px solid $light-grey;
+  padding: 10px;
+
+  .text {
+    font-size: 15px;
+  }
+
+  .info .menu a {
+    color: $questions-show-answer-block-menu-link-color;
+    font-size: 13px;
+
+    &:hover {
+      color: $questions-show-answer-block-menu-link-hover-color;
+      text-decoration: none;
+    }
+  }
+}
+
