@@ -25,6 +25,7 @@ export default Model.extend(Validations, {
   name:     attr('string', { defaultValue: '' }),
   email:    attr('string', { defaultValue: '' }),
   password: attr('string', { defaultValue: '' }),
+  languageToIds: attr(),
 
   language: belongsTo()
 });

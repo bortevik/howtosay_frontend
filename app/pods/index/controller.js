@@ -18,7 +18,16 @@ export default Ember.Controller.extend({
     },
 
     addLanguageFilter(languages) {
-      this.set('languages', languages.mapBy('id'));
+      const languageIds = languages.mapBy('id');
+
+      this.set('languages', languageIds);
+
+      if (this.get('session.isAuthenticated')) {
+        const currentUser = this.get('session.currentUser');
+
+        currentUser.set('languageToIds', languageIds);
+        currentUser.save();
+      }
     }
   }
 });
