@@ -122,6 +122,11 @@ export default {
     en: 'English',
     ru: 'Russian',
     ar: 'Arabic'
+  },
+  actions: {
+    asked: 'asked',
+    answered: 'answered',
+    modified: 'modified'
   }
 
   // "some.translation.key": "Text for some.translation.key",

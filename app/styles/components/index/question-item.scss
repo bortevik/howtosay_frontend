@@ -19,6 +19,17 @@ $index-question-item-tag-color: #39739d;
       margin: 2px;
       padding: .3em .5em;
     }
+
+    .changed-at {
+      color: $grey-9;
+      font-size: 12px;
+      margin-top: 10px;
+
+      .user-name {
+        color: $grey;
+        font-weight: bold;
+      }
+    }
   }
 }
 

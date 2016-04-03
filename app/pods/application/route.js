@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import moment from 'moment';
 
 const { RSVP } = Ember;
 const { service } = Ember.inject;
@@ -36,6 +37,7 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
       const locale = session.get('currentUser.language.code');
 
       this.set('i18n.locale', locale);
+      moment.locale(locale);
     }
   }
 });

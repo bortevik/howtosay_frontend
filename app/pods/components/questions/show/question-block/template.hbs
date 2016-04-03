@@ -1,18 +1,22 @@
 <!-- template-lint bare-strings=false -->
 
-<h2 class="body">{{question.text}}</h2>
+<div class="body">{{question.text}}</div>
 
 <div class="info-block">
-  <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
-</div>
+  <div class="tags">
+    <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
+  </div>
 
-<div class="info row">
+  <span class="changed-at">
+    <span class="user-name">{{question.user.name}}</span>
+    {{inserted_or_updated_at question 'asked' i18n.locale}}
+  </span>
+
   {{#if (eq session.currentUser.id question.user.id)}}
-    <div class="col-md-6 menu">
+    <div class="menu pull-right">
       {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
       <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
     </div>
   {{/if}}
-
-  <div class="col-md-6"></div>
 </div>
+

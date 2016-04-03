@@ -3,6 +3,14 @@ $question-show-question-block-tag-color: #39739d;
 $question-show-question-block-border-color: #c9dcec;
 
 .questions-show-question-block {
+  margin-bottom: 0;
+  padding-bottom: 10px;
+
+  .body {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
   .info-block {
     margin-bottom: .35em;
 
@@ -12,8 +20,30 @@ $question-show-question-block-border-color: #c9dcec;
       color: $question-show-question-block-tag-color;
       display: inline-block;
       font-size: 12px;
-      margin: 2px;
+      margin: 2px 4px 10px 0;
       padding: .3em .5em;
+    }
+
+
+    .menu a {
+      color: $grey-9;
+      font-size: 13px;
+
+      &:hover {
+        color: $grey-3;
+        text-decoration: none;
+      }
+    }
+
+    .changed-at {
+      color: $grey-9;
+      font-size: 12px;
+      margin-top: 10px;
+
+      .user-name {
+        color: $grey;
+        font-weight: bold;
+      }
     }
   }
 }

@@ -29,6 +29,12 @@ module.exports = function(environment) {
 
     'ember-simple-auth': {
       authenticationRoute: 'signin'
+    },
+
+    moment: {
+      includeTimezone: 'all',
+      includeLocales: true,
+      allowEmpty: true
     }
   };
 

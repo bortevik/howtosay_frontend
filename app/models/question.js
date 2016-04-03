@@ -9,11 +9,13 @@ const Validations = buildValidations({
 });
 
 export default Model.extend(Validations, {
-  text: attr('string'),
+  text:       attr('string'),
+  insertedAt: attr('date'),
+  updatedAt:  attr('date'),
 
-  answer: hasMany(),
+  answer:       hasMany(),
   languageFrom: belongsTo('language'),
-  languageTo: belongsTo('language'),
-  user: belongsTo()
+  languageTo:   belongsTo('language'),
+  user:         belongsTo()
 });
 

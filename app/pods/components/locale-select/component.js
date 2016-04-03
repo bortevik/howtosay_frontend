@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
+import moment from 'moment';
 
 const { computed } = Ember;
 const { service } = Ember.inject;
@@ -30,7 +31,10 @@ export default Ember.Component.extend({
     },
 
     selectLocale(language) {
-      this.set('i18n.locale', language.get('code'));
+      const locale = language.get('code');
+
+      this.set('i18n.locale', locale);
+      moment.locale(locale);
       this.set('showSelect', false);
 
       if (this.get('session.isAuthenticated')) {
