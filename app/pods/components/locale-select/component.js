@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import { task } from 'ember-concurrency';
 import moment from 'moment';
+import $ from 'jquery';
 
 const { computed } = Ember;
 const { service } = Ember.inject;
@@ -24,9 +25,22 @@ export default Ember.Component.extend({
     return this.get('i18n').t(translationKey);
   }),
 
+  closeDropdown: computed(function() {
+    return () => {
+      this.set('showSelect', false);
+      $(document).off('click', this.get('closeDropdown'));
+    };
+  }),
+
   actions: {
-    toggleSelect() {
+    toggleSelect(event) {
       this.toggleProperty('showSelect');
+
+      if (this.get('showSelect')) {
+        $(document).on('click', this.get('closeDropdown'));
+      }
+
+      event.stopPropagation();
       return false;
     },
 
