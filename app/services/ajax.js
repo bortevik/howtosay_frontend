@@ -2,7 +2,10 @@ import Ember from 'ember';
 import AjaxService from 'ember-ajax/services/ajax';
 import config from 'howtosay/config/environment';
 
-const { service } = Ember.inject;
+const {
+  computed,
+  inject: { service }
+} = Ember;
 
 export default AjaxService.extend({
   session: service(),
@@ -10,7 +13,7 @@ export default AjaxService.extend({
   host: config.host,
   namespace: `/${config.api}`,
 
-  headers: Ember.computed('session.isAuthenticated', function() {
+  headers: computed('session.isAuthenticated', function() {
     const headers = {
       accept: 'application/vnd.api+json',
       'content-type': 'application/vnd.api+json'

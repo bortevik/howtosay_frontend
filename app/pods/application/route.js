@@ -2,10 +2,13 @@ import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
 
-const { RSVP } = Ember;
-const { service } = Ember.inject;
+const {
+  Route,
+  RSVP,
+  inject: { service }
+} = Ember;
 
-export default Ember.Route.extend(ApplicationRouteMixin, {
+export default Route.extend(ApplicationRouteMixin, {
   session: service(),
   i18n: service(),
 

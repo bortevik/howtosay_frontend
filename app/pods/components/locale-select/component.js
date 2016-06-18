@@ -3,10 +3,13 @@ import { task } from 'ember-concurrency';
 import moment from 'moment';
 import $ from 'jquery';
 
-const { computed } = Ember;
-const { service } = Ember.inject;
+const {
+  Component,
+  inject: { service },
+  computed
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   i18n: service(),
   store: service(),
   session: service(),

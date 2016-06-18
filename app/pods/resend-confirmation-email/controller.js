@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
-const { Controller } = Ember;
-const { service } = Ember.inject;
+const {
+  Controller,
+  inject: { service }
+} = Ember;
 
 export default Controller.extend({
   ajax: service(),
@@ -18,7 +20,7 @@ export default Controller.extend({
         data: JSON.stringify({ email })
       };
 
-      this.get('ajax').post('/users/resend_confirmation_email', options) .then(() => {
+      this.get('ajax').post('/users/resend_confirmation_email', options).then(() => {
         const message = this.get('i18n').t('resend-confirmation-email.success-message', { email });
 
         this.transitionToRoute('index');

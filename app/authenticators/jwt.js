@@ -1,9 +1,14 @@
 import JwtAuthenticator from 'ember-simple-auth-token/authenticators/jwt';
 import Ember from 'ember';
 
+const {
+  assign,
+  $
+} = Ember;
+
 export default JwtAuthenticator.extend({
   makeRequest(url, data, headers) {
-    return Ember.$.ajax({
+    return $.ajax({
       url,
       method: 'POST',
       data: JSON.stringify(data),
@@ -23,7 +28,7 @@ export default JwtAuthenticator.extend({
   },
 
   refreshAccessToken(token, headers = {}) {
-    Ember.merge(headers, { Authorization: `Bearer ${token}` });
+    assign(headers, { Authorization: `Bearer ${token}` });
     return this._super(token, headers);
   }
 });

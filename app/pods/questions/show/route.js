@@ -1,13 +1,17 @@
-/* jscs: disable requireCamelCaseOrUpperCaseIdentifiers */
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-  model({ question_id }) {
+const {
+  Route,
+  RSVP
+} = Ember;
+
+export default Route.extend({
+  model({ question_id: questionId }) { // jscs:ignore
     const store = this.get('store');
 
-    return Ember.RSVP.hash({
-      question: store.findRecord('question', question_id),
-      answers: store.query('answer', { question_id })
+    return RSVP.hash({
+      question: store.findRecord('question', questionId),
+      answers: store.query('answer', { question_id: questionId }) // jscs:ignore
     });
   },
 

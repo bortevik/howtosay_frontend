@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import moment from 'moment';
 
-const { service } = Ember.inject;
+const {
+  Helper,
+  inject: { service }
+} = Ember;
 
-export default Ember.Helper.extend({
+export default Helper.extend({
   i18n: service(),
 
   compute([resource, action]) {

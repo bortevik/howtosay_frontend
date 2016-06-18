@@ -1,9 +1,13 @@
 import Ember from 'ember';
 import DS from 'ember-data';
 
-const { service } = Ember.inject;
+const {
+  Controller,
+  inject: { service }
+} = Ember;
+const { InvalidError } = DS;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   i18n: service(),
   notificationService: service(),
 
@@ -41,7 +45,7 @@ export default Ember.Controller.extend({
   },
 
   _handleErrorSave(response) {
-    if (response instanceof DS.InvalidError) { return; }
+    if (response instanceof InvalidError) { return; }
 
     const message = this.get('i18n').t('signup.something-wrong');
     this.get('notificationService').danger(message);

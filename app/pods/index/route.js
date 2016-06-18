@@ -1,8 +1,12 @@
 import Ember from 'ember';
 
-const { service } = Ember.inject;
+const {
+  Route,
+  inject: { service },
+  $
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
   i18n: service(),
   session: service(),
 
@@ -34,7 +38,7 @@ export default Ember.Route.extend({
   },
 
   setupController(controller, model) {
-    Ember.$(window).scrollTop(0);
+    $(window).scrollTop(0);
 
     controller.set('questions', model);
 

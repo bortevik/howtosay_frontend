@@ -2,12 +2,15 @@ import ValidatorsMessages from 'ember-cp-validations/validators/messages';
 import Ember from 'ember';
 import unwrap from 'howtosay/utils/unwrap-html-safe';
 
-const { Logger } = Ember;
+const {
+  Logger,
+  inject: { service }
+} = Ember;
 
 export default ValidatorsMessages.extend({
-  i18n: Ember.inject.service(),
+  i18n: service(),
 
-  getDescriptionFor(attribute, context = {}) {
+  getDescriptionFor(attribute, context = {}, ...rest) {
     const key = `errors.attributes.${context.name || attribute}`;
     const i18n = this.get('i18n');
 
@@ -17,6 +20,6 @@ export default ValidatorsMessages.extend({
 
     Logger.warn(`[ember-i18n-cp-validations] Missing translation for validation key: ${key}`);
 
-    return this._super(...arguments);
+    return this._super(attribute, context, ...rest);
   }
 });

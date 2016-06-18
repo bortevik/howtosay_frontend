@@ -3,6 +3,7 @@
     <h2>{{t 'signup.title'}}</h2>
     <hr/>
 
+        {{log model.validations.errors}}
     {{#if (and showErrors (not model.validations.isValid))}}
       <ul class="alert alert-danger list-unstyled">
         {{#each model.validations.errors as |error|}}

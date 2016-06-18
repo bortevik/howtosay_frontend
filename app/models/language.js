@@ -2,8 +2,10 @@ import Model from 'ember-data/model';
 import attr from 'ember-data/attr';
 import Ember from 'ember';
 
-const { computed } = Ember;
-const { service } = Ember.inject;
+const {
+  computed,
+  inject: { service }
+} = Ember;
 
 export default Model.extend({
   i18n: service(),

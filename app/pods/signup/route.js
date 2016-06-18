@@ -2,7 +2,9 @@ import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 import ENV from 'howtosay/config/environment';
 
-export default Ember.Route.extend(UnauthenticatedRouteMixin, {
+const { Route } = Ember;
+
+export default Route.extend(UnauthenticatedRouteMixin, {
   model() {
     const store = this.get('store');
     const language = this._getLanguage();

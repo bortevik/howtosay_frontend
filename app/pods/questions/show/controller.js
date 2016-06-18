@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const {
+  Controller,
+  computed
+} = Ember;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   filteredAnswers: computed('answers.[]', function() {
     return this.get('answers')
       .reject(answer => answer.get('isNew'))

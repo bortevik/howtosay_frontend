@@ -1,9 +1,12 @@
 import Ember from 'ember';
 
-const { oneWay } = Ember.computed;
-const { service } = Ember.inject;
+const {
+  Controller,
+  computed: { oneWay },
+  inject: { service }
+} = Ember;
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   notificationService: service(),
 
   notifications: oneWay('notificationService.notifications'),

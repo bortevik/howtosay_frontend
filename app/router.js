@@ -1,9 +1,12 @@
 import Ember from 'ember';
 import config from './config/environment';
 
-const { service } = Ember.inject;
+const {
+  Router,
+  inject: { service }
+} = Ember;
 
-const Router = Ember.Router.extend({
+const HowtosayRouter = Router.extend({
   notificationService: service(),
 
   location: config.locationType,
@@ -14,7 +17,7 @@ const Router = Ember.Router.extend({
   }
 });
 
-Router.map(function() {
+HowtosayRouter.map(function() {
   this.route('questions', function() {
     this.route('show', { path: '/:question_id' });
     this.route('edit', { path: '/:question_id/edit' });
@@ -32,4 +35,4 @@ Router.map(function() {
   this.route('resend-confirmation-email');
 });
 
-export default Router;
+export default HowtosayRouter;

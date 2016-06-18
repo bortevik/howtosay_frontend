@@ -3,16 +3,20 @@ import Base from 'ember-cp-validations/validators/base';
 import DS from 'ember-data';
 import unwrap from 'howtosay/utils/unwrap-html-safe';
 
-const { get, isNone } = Ember;
-const { service } = Ember.inject;
+const {
+  get,
+  isNone,
+  inject: { service }
+} = Ember;
+const { Errors } = DS;
 
-export default Base.extend({
+const DSError = Base.extend({
   i18n: service(),
 
   validate(value, options, model, attribute) {
     const errors = get(model, 'errors');
 
-    if (!isNone(errors) && errors instanceof DS.Errors && errors.has(attribute)) {
+    if (!isNone(errors) && errors instanceof Errors && errors.has(attribute)) {
       return this._getErrorMessage(errors, attribute);
     }
 
@@ -32,3 +36,10 @@ export default Base.extend({
   }
 });
 
+DSError.reopenClass({
+  getDependentsFor(attribute) {
+    return [`_model.errors.${attribute}.[]`];
+  }
+});
+
+export default DSError;

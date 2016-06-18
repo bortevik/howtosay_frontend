@@ -1,9 +1,12 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
-const { service } = Ember.inject;
+const {
+  Component,
+  inject: { service },
+  computed
+} = Ember;
 
-export default Ember.Component.extend({
+export default Component.extend({
   store: service(),
 
   languages: computed(function() {

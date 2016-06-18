@@ -1,8 +1,11 @@
 import Ember from 'ember';
 
-const { service } = Ember.inject;
+const {
+  Route,
+  inject: { service }
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
   session: service(),
   notificationService: service(),
   i18n: service(),

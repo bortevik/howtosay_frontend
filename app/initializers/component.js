@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
+const { Component } = Ember;
+
 export function initialize() {
-  Ember.Component.reopen({
+  Component.reopen({
     init(...args) {
       this._super(...args);
 

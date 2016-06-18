@@ -1,6 +1,6 @@
-import DS from 'ember-data';
+import JSONAPISerializer from 'ember-data/serializers/json-api';
 
-export default DS.JSONAPISerializer.extend({
+export default JSONAPISerializer.extend({
   normalizeQueryResponse(...args) {
     const [, , payload] = args;
     const result = this._super(...args);

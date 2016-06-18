@@ -1,7 +1,16 @@
 import Ember from 'ember';
 
-export default Ember.Service.extend({
-  notifications: Ember.A(),
+const {
+  Service,
+  A,
+  Object,
+  assign,
+  typeOf,
+  run
+} = Ember;
+
+export default Service.extend({
+  notifications: A(),
 
   defaultClearDuration: 3200,
   defaultAutoClear: false,
@@ -12,7 +21,7 @@ export default Ember.Service.extend({
       throw new Error('No notification message set');
     }
 
-    const notification = Ember.Object.create({
+    const notification = Object.create({
       message: options.message,
       type: options.type || 'info', // info, success, warning, danger
       autoClear: options.autoClear || this.get('defaultAutoClear'),
@@ -32,28 +41,28 @@ export default Ember.Service.extend({
 
   // Helper methods for each type of notification
   danger(message, options) {
-    this.addNotification(Ember.merge({
+    this.addNotification(assign({
       message,
       type: 'danger'
     }, options));
   },
 
   success(message, options) {
-    this.addNotification(Ember.merge({
+    this.addNotification(assign({
       message,
       type: 'success'
     }, options));
   },
 
   info(message, options) {
-    this.addNotification(Ember.merge({
+    this.addNotification(assign({
       message,
       type: 'info'
     }, options));
   },
 
   warning(message, options) {
-    this.addNotification(Ember.merge({
+    this.addNotification(assign({
       message,
       type: 'warning'
     }, options));
@@ -64,7 +73,7 @@ export default Ember.Service.extend({
 
     notification.set('dismiss', true);
     // Delay removal from DOM for dismissal animation
-    Ember.run.later(this, () => {
+    run.later(this, () => {
       this.get('notifications').removeObject(notification);
     }, 500);
   },
@@ -72,7 +81,7 @@ export default Ember.Service.extend({
   setupAutoClear(notification) {
     notification.set('startTime', Date.now());
 
-    const timer = Ember.run.later(this, () => {
+    const timer = run.later(this, () => {
       // Hasn't been closed manually
       if (this.indexOf(notification) >= 0) {
         this.removeNotification(notification);
@@ -83,7 +92,7 @@ export default Ember.Service.extend({
   },
 
   pauseAutoClear(notification) {
-    Ember.run.cancel(notification.get('timer'));
+    run.cancel(notification.get('timer'));
 
     const elapsed = Date.now() - notification.get('startTime');
     const remaining = notification.get('clearDuration') - elapsed;
@@ -91,11 +100,11 @@ export default Ember.Service.extend({
   },
 
   clearAll() {
-    this.set('notifications', Ember.A());
+    this.set('notifications', A());
   },
 
   setDefaultAutoClear(autoClear) {
-    if (Ember.typeOf(autoClear) !== 'boolean') {
+    if (typeOf(autoClear) !== 'boolean') {
       throw new Error('Default auto clear preference must be a boolean');
     }
 
@@ -103,7 +112,7 @@ export default Ember.Service.extend({
   },
 
   setDefaultClearNotification(clearDuration) {
-    if (Ember.typeOf(clearDuration) !== 'number') {
+    if (typeOf(clearDuration) !== 'number') {
       throw new Error('Clear duration must be a number');
     }
 

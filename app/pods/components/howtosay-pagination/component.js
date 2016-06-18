@@ -1,9 +1,12 @@
 import Ember from 'ember';
 
-const { computed } = Ember;
+const {
+  Component,
+  computed
+} = Ember;
 const { oneWay } = computed;
 
-export default Ember.Component.extend({
+export default Component.extend({
   tagName: 'nav',
 
   pagination: oneWay('model.meta.pagination'),

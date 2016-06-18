@@ -1,9 +1,12 @@
 import Ember from 'ember';
 
-const { RSVP } = Ember;
-const { service } = Ember.inject;
+const {
+  Route,
+  RSVP,
+  inject: { service }
+} = Ember;
 
-export default Ember.Route.extend({
+export default Route.extend({
   session: service(),
 
   model() {
