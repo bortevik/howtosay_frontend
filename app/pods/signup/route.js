@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
-import ENV from 'howtosay/config/environment';
+import config from 'howtosay/config/environment';
 
 const { Route } = Ember;
 
@@ -24,7 +24,7 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     const [code] = fullCode.split('-');
     const languages = this.get('store').peekAll('language');
 
-    return languages.findBy('code', code) || languages.findBy('code', ENV.i18n.defaultLocale);
+    return languages.findBy('code', code) || languages.findBy('code', config.i18n.defaultLocale);
   }
 });
 

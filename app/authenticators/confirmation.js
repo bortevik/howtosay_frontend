@@ -1,11 +1,11 @@
 import JwtAuthenticator from './jwt';
-import ENV from 'howtosay/config/environment';
+import config from 'howtosay/config/environment';
 
 export default JwtAuthenticator.extend({
   init(...args) {
     this._super(...args);
 
-    this.serverTokenEndpoint = `${ENV.host}/${ENV.api}/users/email_confirmation`;
+    this.serverTokenEndpoint = [config.host, config.api, 'confirm_email'].join('/');
   },
 
   getAuthenticateData({ token }) {

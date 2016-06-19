@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import moment from 'moment';
+import { task } from 'ember-concurrency';
 
 const {
   Route,
@@ -16,22 +17,26 @@ export default Route.extend(ApplicationRouteMixin, {
     return RSVP.Promise.all([
       this._super(...args),
       this.store.findAll('language'),
-      this._loadCurrentUser()
+      this.get('loadingCurrentUser').perform()
     ]);
   },
 
-  afterModel() {
-    this._setLocale();
+  sessionAuthenticated(...args) {
+    const { _super } = this;
+
+    this.get('loadingCurrentUser').perform().then(() => {
+      _super.apply(this, args);
+    });
   },
 
-  _loadCurrentUser() {
+  loadingCurrentUser: task(function *() {
     const session = this.get('session');
-    if (!session.get('isAuthenticated')) { return null; }
+    if (!session.get('isAuthenticated')) { return; }
 
-    const userId = session.get('data.authenticated.data.id');
-
-    return this.get('store').findRecord('user', userId);
-  },
+    const user = yield this.get('store').queryRecord('user', {});
+    this.set('session.currentUser', user);
+    this._setLocale();
+  }),
 
   _setLocale() {
     const session = this.get('session');

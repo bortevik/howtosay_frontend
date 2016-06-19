@@ -17,7 +17,7 @@
         {{locale-select}}
         {{#if session.isAuthenticated}}
           <p class="navbar-text">
-            {{session.data.authenticated.data.attributes.name}}
+            {{session.currentUser.name}}
           </p>
           <li>
             <a href="#" {{action 'invalidateSession'}}>{{t 'header.signout-link'}}</a>

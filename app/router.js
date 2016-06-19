@@ -31,7 +31,7 @@ HowtosayRouter.map(function() {
   this.route('signin');
   this.route('signup');
 
-  this.route('email-confirmation', { path: '/email-confirmation/:token' });
+  this.route('email-confirmation', { path: '/confirm-email/:token' });
   this.route('resend-confirmation-email');
 });
 
