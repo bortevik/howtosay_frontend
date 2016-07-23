@@ -67,7 +67,7 @@ export default {
     'error-message': 'Wrong confirmation token'
   },
   'resend-confirmation-email': {
-    'title': 'Resend confirmation email',
+    title: 'Resend confirmation email',
     'email-placeholder': 'Email',
     'submit-button': 'Sign in',
     'success-message': 'Confirmation email was sent to {{email}}',

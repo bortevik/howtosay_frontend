@@ -1,22 +1,25 @@
 <!-- template-lint bare-strings=false -->
+{{vote-block votes=question.votes vote=(perform voting)}}
 
-<div class="body">{{question.text}}</div>
+<div class="main-column">
+  <div class="body">{{question.text}}</div>
 
-<div class="info-block">
-  <div class="tags">
-    <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
-  </div>
-
-  <span class="changed-at">
-    <span class="user-name">{{question.user.name}}</span>
-    {{inserted_or_updated_at question 'asked' i18n.locale}}
-  </span>
-
-  {{#if (eq session.currentUser.id question.user.id)}}
-    <div class="menu pull-right">
-      {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
-      <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
+  <div class="info-block">
+    <div class="tags">
+      <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
     </div>
-  {{/if}}
+
+    <span class="changed-at">
+      <span class="user-name">{{question.user.name}}</span>
+      {{inserted_or_updated_at question 'asked' i18n.locale}}
+    </span>
+
+    {{#if (eq session.currentUser.id question.user.id)}}
+      <div class="menu pull-right">
+        {{link-to (t 'questions.show.question.edit-link') 'questions.edit' question}}
+        <a href="#" onclick={{action attrs.deleteQuestion}}>{{t 'questions.show.question.delete-link'}}</a>
+      </div>
+    {{/if}}
+  </div>
 </div>
 

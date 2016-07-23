@@ -12,6 +12,7 @@ export default Model.extend(Validations, {
   text:       attr('string'),
   insertedAt: attr('date'),
   updatedAt:  attr('date'),
+  votes:      attr('number'),
 
   answer:       hasMany(),
   languageFrom: belongsTo('language'),
