@@ -1,18 +1,22 @@
-<div class="text">
-  {{answer.text}}
-</div>
+{{vote-block votes=answer.votes vote=(perform voting)}}
 
-<div class="info">
-  <span class="changed-at">
-    <span class="user-name">{{answer.user.name}}</span>
-    {{inserted_or_updated_at answer 'answered' i18n.locale}}
-  </span>
+<div class="main-column">
+  <div class="text">
+    {{answer.text}}
+  </div>
 
-  {{#if (eq session.currentUser.id answer.user.id)}}
-    <div class="pull-right menu">
-      {{link-to (t 'questions.show.answer.edit-link') 'answers.edit' answer}}
-      <a href="#" {{action attrs.deleteAnswer answer}}>{{t 'questions.show.answer.delete-link'}}</a>
-    </div>
-  {{/if}}
+  <div class="info">
+    <span class="changed-at">
+      <span class="user-name">{{answer.user.name}}</span>
+      {{inserted_or_updated_at answer 'answered' i18n.locale}}
+    </span>
+
+    {{#if (eq session.currentUser.id answer.user.id)}}
+      <div class="pull-right menu">
+        {{link-to (t 'questions.show.answer.edit-link') 'answers.edit' answer}}
+        <a href="#" {{action attrs.deleteAnswer answer}}>{{t 'questions.show.answer.delete-link'}}</a>
+      </div>
+    {{/if}}
+  </div>
 </div>
 

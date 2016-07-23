@@ -6,6 +6,7 @@ export default Model.extend({
   text:       attr('string'),
   insertedAt: attr('date'),
   updatedAt:  attr('date'),
+  votes:      attr('number'),
 
   question: belongsTo(),
   user:     belongsTo()
