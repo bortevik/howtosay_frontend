@@ -22,5 +22,5 @@ export default Component.extend({
     } catch (e) {
       // do nothing
     }
-  })
+  }).drop()
 });
