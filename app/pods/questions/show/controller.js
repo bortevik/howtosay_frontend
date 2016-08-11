@@ -2,10 +2,13 @@ import Ember from 'ember';
 
 const {
   Controller,
-  computed
+  computed,
+  inject: { service }
 } = Ember;
 
 export default Controller.extend({
+  session: service(),
+
   filteredAnswers: computed('answers.[]', function() {
     return this.get('answers')
       .reject(answer => answer.get('isNew'))
