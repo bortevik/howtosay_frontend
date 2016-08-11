@@ -1,7 +1,11 @@
 export default {
   index: {
     prompt: 'Sign up to create your first question.',
-    'new-question-button': 'Ask new question'
+    'new-question-button': 'Ask new question',
+    statistics: {
+      votes: 'votes',
+      answers: 'answers'
+    }
   },
   header: {
     'signup-link': 'Sign up',

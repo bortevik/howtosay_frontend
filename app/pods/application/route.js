@@ -29,7 +29,7 @@ export default Route.extend(ApplicationRouteMixin, {
     });
   },
 
-  loadingCurrentUser: task(function *() {
+  loadingCurrentUser: task(function*() {
     const session = this.get('session');
     if (!session.get('isAuthenticated')) { return; }
 

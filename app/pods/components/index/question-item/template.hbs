@@ -1,15 +1,37 @@
 <!-- template-lint bare-strings=false -->
 
-<div class="question-body">
-  {{link-to question.text 'questions.show' question.id}}
+<div class="statistics">
+  <div class="votes st-item">
+    <div class="st-count">
+      {{question.votes}}
+    </div>
+    <div class="st-label">
+      {{t 'index.statistics.votes'}}
+    </div>
+  </div>
+
+  <div class="answers st-item">
+    <div class="st-count">
+      {{question.answersCount}}
+    </div>
+    <div class="st-label">
+      {{t 'index.statistics.answers'}}
+    </div>
+  </div>
 </div>
 
-<div class="info-block">
-  <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
+<div class="summary">
+  <div class="question-body">
+    {{link-to question.text 'questions.show' question.id}}
+  </div>
 
-  <div class="changed-at pull-right">
-    <span class="user-name">{{question.user.name}}</span>
-    {{inserted_or_updated_at question 'asked' i18n.locale}}
+  <div class="info-block">
+    <span class="tag">{{question.languageFrom.localizedName}} -> {{question.languageTo.localizedName}}</span>
+
+    <div class="changed-at pull-right">
+      <span class="user-name">{{question.user.name}}</span>
+      {{inserted_or_updated_at question 'asked' i18n.locale}}
+    </div>
   </div>
 </div>
 
