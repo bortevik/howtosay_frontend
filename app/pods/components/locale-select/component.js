@@ -61,7 +61,7 @@ export default Component.extend({
     }
   },
 
-  _updateUser: task(function *(language) {
+  _updateUser: task(function*(language) {
     const user = this.get('session.currentUser');
 
     if (user.get('language.id') === language.get('id')) { return; }
