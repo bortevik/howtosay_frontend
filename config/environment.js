@@ -4,7 +4,7 @@ module.exports = function(environment) {
   const ENV = {
     environment,
     modulePrefix: 'howtosay',
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     podModulePrefix: 'howtosay/pods',
     api: 'api/v1',

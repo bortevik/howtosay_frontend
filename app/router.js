@@ -10,6 +10,7 @@ const HowtosayRouter = Router.extend({
   notificationService: service(),
 
   location: config.locationType,
+  rootURL: config.rootURL,
 
   willTransition(...args) {
     this.get('notificationService').clearAll();
