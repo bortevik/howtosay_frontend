@@ -11,7 +11,7 @@ export default function(name, options = {}) {
       this.application = startApp();
 
       if (options.beforeEach) {
-        options.beforeEach(...args);
+        return options.beforeEach(...args);
       }
     },
 

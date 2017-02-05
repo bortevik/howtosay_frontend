@@ -15,7 +15,7 @@ export function initialize() {
           .replace(':', '')
           .replace(/\//g, '-');
 
-        this.get('classNames').push(className);
+        this.set('classNames', this.get('classNames').concat(className));
       }
     }
   });

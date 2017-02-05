@@ -1,6 +1,6 @@
 module.exports = {
   rules: {
-    'bare-strings': true
+    'bare-strings': false
   }
 };
 
