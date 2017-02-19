@@ -1,9 +1,21 @@
 module Main.Types exposing (..)
 
+import Navigation exposing (Location)
+import SignIn.Types
+
+
+type Route
+    = QuestionsRoute
+    | SignInRoute
+    | NotFoundRoute
+
 
 type alias Model =
-    String
+    { route : Route
+    , signInModel : SignIn.Types.Model
+    }
 
 
 type Msg
-    = NoOp
+    = UrlChange Location
+    | SignInMsg SignIn.Types.Msg

@@ -44,5 +44,9 @@ module.exports = {
     ],
 
     noParse: /\.elm$/
+  },
+
+  devServer: {
+    historyApiFallback: true
   }
 };
