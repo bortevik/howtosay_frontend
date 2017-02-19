@@ -9,14 +9,14 @@ import SignIn.View
 view : Model -> Html Msg
 view model =
     div []
-        [ navMenu
+        [ navMenu model
         , section [ class "section" ]
             [ div [ class "container" ] [ pageView model ] ]
         ]
 
 
-navMenu : Html Msg
-navMenu =
+navMenu : Model -> Html Msg
+navMenu model =
     nav [ class "nav has-shadow" ]
         [ div [ class "container" ]
             [ div [ class "nav-left" ]
@@ -24,10 +24,7 @@ navMenu =
                     [ h1 [ class "title is-4" ] [ text "Howtosay" ]
                     ]
                 ]
-            , div [ class "nav-right" ]
-                [ a [ class "nav-item", href "/signin" ] [ text "Sign In" ]
-                , a [ class "nav-item signup" ] [ text "Sign Up" ]
-                ]
+            , userMenu model
             ]
         ]
 
@@ -43,3 +40,20 @@ pageView model =
 
         SignInRoute ->
             Html.map Main.Types.SignInMsg (SignIn.View.view model.signInModel)
+
+
+userMenu : Model -> Html Msg
+userMenu { authToken } =
+    let
+        links =
+            case authToken of
+                Just token ->
+                    [ a [ class "nav-item signout" ] [ text "Sign Out" ]
+                    ]
+
+                Nothing ->
+                    [ a [ class "nav-item signin", href "/signin" ] [ text "Sign In" ]
+                    , a [ class "nav-item signup" ] [ text "Sign Up" ]
+                    ]
+    in
+        div [ class "nav-right" ] links

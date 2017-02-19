@@ -13,6 +13,7 @@ type Route
 type alias Model =
     { route : Route
     , signInModel : SignIn.Types.Model
+    , authToken : Maybe String
     }
 
 

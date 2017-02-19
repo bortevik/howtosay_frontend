@@ -1,17 +1,30 @@
 module SignIn.State exposing (..)
 
-import SignIn.Types exposing (Model, Email(..), Password(..), Msg(..))
+import SignIn.Types exposing (Model, Msg(..))
+import SignIn.Rest as Rest
 
 
 init : Model
 init =
-    { email = Email ""
-    , password = Password ""
+    { email = ""
+    , password = ""
     }
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        NoOp ->
+        EmailInput email ->
+            ( { model | email = email }, Cmd.none )
+
+        PasswordInput password ->
+            ( { model | password = password }, Cmd.none )
+
+        SignInSubmit ->
+            ( model, Rest.signIn model )
+
+        SignIn (Ok token) ->
             ( model, Cmd.none )
+
+        SignIn (Err error) ->
+            Debug.log "failed" ( model, Cmd.none )

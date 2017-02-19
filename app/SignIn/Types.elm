@@ -1,19 +1,16 @@
 module SignIn.Types exposing (..)
 
+import Http
+
 
 type alias Model =
-    { email : Email
-    , password : Password
+    { email : String
+    , password : String
     }
 
 
-type Email
-    = Email String
-
-
-type Password
-    = Password String
-
-
 type Msg
-    = NoOp
+    = EmailInput String
+    | PasswordInput String
+    | SignInSubmit
+    | SignIn (Result Http.Error String)
