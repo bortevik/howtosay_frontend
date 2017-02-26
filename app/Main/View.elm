@@ -43,12 +43,13 @@ pageView model =
 
 
 userMenu : Model -> Html Msg
-userMenu { authToken } =
+userMenu { currentUser } =
     let
         links =
-            case authToken of
-                Just token ->
-                    [ a [ class "nav-item signout" ] [ text "Sign Out" ]
+            case currentUser of
+                Just user ->
+                    [ span [ class "nav-item" ] [ text user.name ]
+                    , a [ class "nav-item signout" ] [ text "Sign Out" ]
                     ]
 
                 Nothing ->

@@ -1,6 +1,7 @@
 module Main.State exposing (..)
 
 import Main.Types exposing (Model, Msg(..), Route(..))
+import Main.Rest exposing (fetchCurrentUser, fetchLanguages)
 import Navigation exposing (Location)
 import Routing exposing (parseLocation)
 import SignIn.State
@@ -15,6 +16,8 @@ initialModel route =
     { route = route
     , signInModel = SignIn.State.init
     , authToken = Nothing
+    , currentUser = Nothing
+    , languages = []
     }
 
 
@@ -24,7 +27,7 @@ init location =
         currentRoute =
             Routing.parseLocation location
     in
-        ( initialModel currentRoute, Cmd.none )
+        ( initialModel currentRoute, fetchLanguages )
 
 
 
@@ -42,16 +45,36 @@ update msg model =
                 ( { model | route = newRoute }, Cmd.none )
 
         SignInMsg subMsg ->
-            case subMsg of
-                SignIn.Types.SignIn (Ok authToken) ->
-                    ( { model | authToken = Just authToken }, Cmd.none )
+            signInUpdate subMsg model
 
-                _ ->
-                    let
-                        ( updatedSignInModel, signInCmd ) =
-                            SignIn.State.update subMsg model.signInModel
-                    in
-                        ( { model | signInModel = updatedSignInModel }, Cmd.map SignInMsg signInCmd )
+        ReceiveCurrentUser result ->
+            case result of
+                Ok user ->
+                    ( { model | currentUser = Just user }, Cmd.none )
+
+                Err _ ->
+                    ( { model | currentUser = Nothing }, Cmd.none )
+
+        ReceiveLanguages languages ->
+            ( { model | languages = Debug.log "languages" languages }, Cmd.none )
+
+
+signInUpdate : SignIn.Types.Msg -> Model -> ( Model, Cmd Msg )
+signInUpdate msg model =
+    case msg of
+        SignIn.Types.SignIn (Ok token) ->
+            let
+                authToken =
+                    Just token
+            in
+                ( { model | authToken = authToken }, fetchCurrentUser authToken )
+
+        _ ->
+            let
+                ( updatedSignInModel, signInCmd ) =
+                    SignIn.State.update msg model.signInModel
+            in
+                ( { model | signInModel = updatedSignInModel }, Cmd.map SignInMsg signInCmd )
 
 
 

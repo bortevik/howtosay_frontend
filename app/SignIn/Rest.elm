@@ -1,11 +1,11 @@
 module SignIn.Rest exposing (..)
 
 import Http
-import Json.Encode as Encode
 import Task
 import SignIn.Types exposing (Model, Msg(..))
 import SignIn.Encoders exposing (signInEncoder)
 import SignIn.Decoders exposing (signInDecoder)
+import Utils.Http exposing (post)
 
 
 signIn : Model -> Cmd Msg
@@ -18,17 +18,10 @@ signIn model =
 signInRequest : Model -> Http.Request String
 signInRequest model =
     let
-        body =
+        encodedJson =
             signInEncoder model
-                |> Encode.encode 0
-                |> Http.stringBody "application/vnd.api+json"
+
+        authToken =
+            Nothing
     in
-        Http.request
-            { method = "POST"
-            , headers = [ Http.header "Accept" "application/vnd.api+json" ]
-            , url = "http://localhost:4000/api/v1/signin"
-            , body = body
-            , expect = Http.expectJson signInDecoder
-            , timeout = Nothing
-            , withCredentials = False
-            }
+        post authToken "/signin" encodedJson signInDecoder
