@@ -55,7 +55,9 @@ update msg model =
             signInUpdate subMsg model
 
         SignOut ->
-            ({ model | authToken = Nothing, currentUser = Nothing } ! [])
+            ({ model | authToken = Nothing, currentUser = Nothing }
+                ! [ storeToStorage ( "authToken", Nothing ) ]
+            )
 
         ReceiveCurrentUser result ->
             receiveCurrentUser result model
@@ -89,7 +91,7 @@ signInUpdate msg model =
                     Just token
             in
                 { model | authToken = authToken }
-                    ! [ storeToStorage ( "authToken", token )
+                    ! [ storeToStorage ( "authToken", authToken )
                       , fetchCurrentUser authToken
                       ]
 
@@ -124,7 +126,7 @@ questionsUpdate msg model =
 -- PORTS
 
 
-port storeToStorage : ( String, String ) -> Cmd msg
+port storeToStorage : ( String, Maybe String ) -> Cmd msg
 
 
 port requestLoadFromStorage : String -> Cmd msg

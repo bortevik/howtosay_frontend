@@ -7,7 +7,11 @@ const app = Elm.Main.fullscreen();
 
 // Ports
 app.ports.storeToStorage.subscribe(([key, value]) => {
-  localStorage.setItem(key, value);
+  if (value === null) {
+    localStorage.removeItem(key);
+  } else {
+    localStorage.setItem(key, value);
+  }
 });
 
 app.ports.requestLoadFromStorage.subscribe(key => {
