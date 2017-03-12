@@ -31,7 +31,11 @@ init location =
         currentRoute =
             Routing.parseLocation location
     in
-        ( initialModel currentRoute, fetchLanguages )
+        (initialModel currentRoute
+            ! [ requestLoadFromStorage "authToken"
+              , fetchLanguages
+              ]
+        )
 
 
 
@@ -42,25 +46,38 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         NavigateTo route ->
-            ( model, Navigation.newUrl <| Routing.reverse route )
+            (model ! [ Navigation.newUrl <| Routing.reverse route ])
 
         UrlChange location ->
-            ( { model | route = parseLocation location }, Cmd.none )
+            ({ model | route = parseLocation location } ! [])
 
         SignInMsg subMsg ->
             signInUpdate subMsg model
 
         SignOut ->
-            ( { model | authToken = Nothing, currentUser = Nothing }, Cmd.none )
+            ({ model | authToken = Nothing, currentUser = Nothing } ! [])
 
         ReceiveCurrentUser result ->
             receiveCurrentUser result model
 
         ReceiveLanguages languages ->
-            ( { model | languages = languages }, Cmd.none )
+            ({ model | languages = languages } ! [])
 
         QuestionsMsg subMsg ->
             questionsUpdate subMsg model
+
+        LoadFromStorage ( key, payload ) ->
+            case payload of
+                Just value ->
+                    case key of
+                        "authToken" ->
+                            (model ! [ fetchCurrentUser payload ])
+
+                        _ ->
+                            (model ! [])
+
+                Nothing ->
+                    (model ! [])
 
 
 signInUpdate : SignIn.Types.Msg -> Model -> ( Model, Cmd Msg )
@@ -113,7 +130,7 @@ port storeToStorage : ( String, String ) -> Cmd msg
 port requestLoadFromStorage : String -> Cmd msg
 
 
-port loadFromStroage : (String -> msg) -> Sub msg
+port loadFromStorage : (( String, Maybe String ) -> msg) -> Sub msg
 
 
 
@@ -122,4 +139,4 @@ port loadFromStroage : (String -> msg) -> Sub msg
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    loadFromStorage LoadFromStorage

@@ -34,6 +34,7 @@ type Msg
     | ReceiveCurrentUser (Result Http.Error User)
     | ReceiveLanguages (List Language)
     | QuestionsMsg Questions.Types.Msg
+    | LoadFromStorage ( String, Maybe String )
 
 
 type alias User =

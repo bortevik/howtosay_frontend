@@ -11,6 +11,6 @@ app.ports.storeToStorage.subscribe(([key, value]) => {
 });
 
 app.ports.requestLoadFromStorage.subscribe(key => {
-  app.ports.loadFromStorage.send(localStorage.getItem(key));
+  app.ports.loadFromStorage.send([key, localStorage.getItem(key)]);
 });
 
