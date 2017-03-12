@@ -1,11 +1,14 @@
-module Main.State exposing (..)
+port module Main.State exposing (..)
 
-import Main.Types exposing (Model, Msg(..), Route(..))
+import Main.Types exposing (Model, Msg(..), Route(..), User)
 import Main.Rest exposing (fetchCurrentUser, fetchLanguages)
 import Navigation exposing (Location)
 import Routing exposing (parseLocation)
 import SignIn.State
 import SignIn.Types
+import Questions.State
+import Questions.Types
+import Http
 
 
 -- INIT
@@ -18,6 +21,7 @@ initialModel route =
     , authToken = Nothing
     , currentUser = Nothing
     , languages = []
+    , questionsModel = Questions.State.init
     }
 
 
@@ -37,26 +41,26 @@ init location =
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        NavigateTo route ->
+            ( model, Navigation.newUrl <| Routing.reverse route )
+
         UrlChange location ->
-            let
-                newRoute =
-                    parseLocation location
-            in
-                ( { model | route = newRoute }, Cmd.none )
+            ( { model | route = parseLocation location }, Cmd.none )
 
         SignInMsg subMsg ->
             signInUpdate subMsg model
 
-        ReceiveCurrentUser result ->
-            case result of
-                Ok user ->
-                    ( { model | currentUser = Just user }, Cmd.none )
+        SignOut ->
+            ( { model | authToken = Nothing, currentUser = Nothing }, Cmd.none )
 
-                Err _ ->
-                    ( { model | currentUser = Nothing }, Cmd.none )
+        ReceiveCurrentUser result ->
+            receiveCurrentUser result model
 
         ReceiveLanguages languages ->
-            ( { model | languages = Debug.log "languages" languages }, Cmd.none )
+            ( { model | languages = languages }, Cmd.none )
+
+        QuestionsMsg subMsg ->
+            questionsUpdate subMsg model
 
 
 signInUpdate : SignIn.Types.Msg -> Model -> ( Model, Cmd Msg )
@@ -67,7 +71,10 @@ signInUpdate msg model =
                 authToken =
                     Just token
             in
-                ( { model | authToken = authToken }, fetchCurrentUser authToken )
+                { model | authToken = authToken }
+                    ! [ storeToStorage ( "authToken", token )
+                      , fetchCurrentUser authToken
+                      ]
 
         _ ->
             let
@@ -75,6 +82,38 @@ signInUpdate msg model =
                     SignIn.State.update msg model.signInModel
             in
                 ( { model | signInModel = updatedSignInModel }, Cmd.map SignInMsg signInCmd )
+
+
+receiveCurrentUser : Result Http.Error User -> Model -> ( Model, Cmd Msg )
+receiveCurrentUser result model =
+    case result of
+        Ok user ->
+            ({ model | currentUser = Just user } |> update (NavigateTo QuestionsRoute))
+
+        Err _ ->
+            ( { model | currentUser = Nothing }, Cmd.none )
+
+
+questionsUpdate : Questions.Types.Msg -> Model -> ( Model, Cmd Msg )
+questionsUpdate msg model =
+    let
+        ( updatedQuestionsModel, questionsCmd ) =
+            Questions.State.update msg model.questionsModel
+    in
+        ( { model | questionsModel = updatedQuestionsModel }, Cmd.map QuestionsMsg questionsCmd )
+
+
+
+-- PORTS
+
+
+port storeToStorage : ( String, String ) -> Cmd msg
+
+
+port requestLoadFromStorage : String -> Cmd msg
+
+
+port loadFromStroage : (String -> msg) -> Sub msg
 
 
 

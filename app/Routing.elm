@@ -17,3 +17,16 @@ parseLocation : Location -> Route
 parseLocation location =
     parsePath matchers location
         |> Maybe.withDefault NotFoundRoute
+
+
+reverse : Route -> String
+reverse route =
+    case route of
+        QuestionsRoute ->
+            "/"
+
+        SignInRoute ->
+            "/signin"
+
+        NotFoundRoute ->
+            "/404"

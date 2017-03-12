@@ -3,6 +3,7 @@ module Main.Types exposing (..)
 import Http
 import Navigation exposing (Location)
 import SignIn.Types
+import Questions.Types
 
 
 type alias AuthToken =
@@ -21,21 +22,25 @@ type alias Model =
     , authToken : AuthToken
     , currentUser : Maybe User
     , languages : List Language
+    , questionsModel : Questions.Types.Model
     }
 
 
 type Msg
-    = UrlChange Location
+    = NavigateTo Route
+    | UrlChange Location
     | SignInMsg SignIn.Types.Msg
+    | SignOut
     | ReceiveCurrentUser (Result Http.Error User)
     | ReceiveLanguages (List Language)
+    | QuestionsMsg Questions.Types.Msg
 
 
 type alias User =
     { id : String
     , name : String
     , languageToIds : List Int
-    , language : String
+    , languageId : String
     }
 
 

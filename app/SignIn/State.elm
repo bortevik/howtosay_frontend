@@ -23,8 +23,5 @@ update msg model =
         SignInSubmit ->
             ( model, Rest.signIn model )
 
-        SignIn (Ok token) ->
+        SignIn result ->
             ( model, Cmd.none )
-
-        SignIn (Err error) ->
-            Debug.log "failed" ( model, Cmd.none )

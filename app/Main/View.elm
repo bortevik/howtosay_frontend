@@ -2,8 +2,10 @@ module Main.View exposing (..)
 
 import Html exposing (Html, div, text, nav, a, span, h1, section)
 import Html.Attributes exposing (class, href)
-import Main.Types exposing (Model, Msg(..), Route(..))
+import Html.Events exposing (onClick)
+import Main.Types exposing (Model, Msg(..), Route(..), Language, User)
 import SignIn.View
+import Questions.View
 
 
 view : Model -> Html Msg
@@ -33,23 +35,24 @@ pageView : Model -> Html Msg
 pageView model =
     case model.route of
         QuestionsRoute ->
-            h1 [ class "title is-1" ] [ text "Questions" ]
+            Html.map QuestionsMsg (Questions.View.view model.questionsModel)
 
         NotFoundRoute ->
             h1 [ class "title is-1" ] [ text "There is no such page" ]
 
         SignInRoute ->
-            Html.map Main.Types.SignInMsg (SignIn.View.view model.signInModel)
+            Html.map SignInMsg (SignIn.View.view model.signInModel)
 
 
 userMenu : Model -> Html Msg
-userMenu { currentUser } =
+userMenu { currentUser, languages } =
     let
         links =
             case currentUser of
                 Just user ->
-                    [ span [ class "nav-item" ] [ text user.name ]
-                    , a [ class "nav-item signout" ] [ text "Sign Out" ]
+                    [ span [ class "nav-item" ] [ currentLanguage languages user ]
+                    , span [ class "nav-item" ] [ text user.name ]
+                    , a [ class "nav-item signout", onClick SignOut ] [ text "Sign Out" ]
                     ]
 
                 Nothing ->
@@ -58,3 +61,18 @@ userMenu { currentUser } =
                     ]
     in
         div [ class "nav-right" ] links
+
+
+currentLanguage : List Language -> User -> Html Msg
+currentLanguage languages { languageId } =
+    let
+        maybeLanguage =
+            List.filter (\language -> language.id == languageId) languages
+                |> List.head
+    in
+        case maybeLanguage of
+            Just language ->
+                text language.name
+
+            Nothing ->
+                text ""
