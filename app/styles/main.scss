@@ -1,14 +1,4 @@
 @import '~bulma';
-
-.signup::before {
-  content: "";
-  position: relative;
-  left: -11px;
-  top: 50%;
-  margin-top: -34px;
-  width: 2px;
-  height: 18px;
-  background-color: #aaa;
-  box-sizing: border-box;
-}
-
+@import 'variables';
+@import 'navbar';
+@import 'questions';

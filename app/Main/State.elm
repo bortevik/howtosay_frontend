@@ -49,7 +49,19 @@ update msg model =
             (model ! [ Navigation.newUrl <| Routing.reverse route ])
 
         UrlChange location ->
-            ({ model | route = parseLocation location } ! [])
+            let
+                route =
+                    parseLocation location
+
+                changedModel =
+                    { model | route = route }
+            in
+                case route of
+                    QuestionsRoute ->
+                        questionsUpdate Questions.Types.OnPageLoad model
+
+                    _ ->
+                        (changedModel ! [])
 
         SignInMsg subMsg ->
             signInUpdate subMsg model

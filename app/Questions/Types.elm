@@ -7,11 +7,14 @@ type alias Model =
 
 
 type alias Question =
-    { text : String }
+    { id : String
+    , text : String
+    }
 
 
 type Msg
-    = ReceiveQuestions (List Question)
+    = OnPageLoad
+    | ReceiveQuestions (List Question)
 
 
 
